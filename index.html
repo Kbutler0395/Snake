@@ -2,6 +2,14 @@
 <html lang="fr">
 	<head>
 		<title>Snake using HTML5 canvas and JQuery</title>
+		<style type="text/css">
+			#container 
+			{
+				width: 350px;
+				height: 350px; 
+				border: solid 1px #000000;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -12,8 +20,9 @@
 		<script src="js/jquery.snake.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			$('#container').snake({
-				canvasWidth: '350px', 
-				canvasHeight: '350px'
+				canvasWidth: 350, 
+				canvasHeight: 350, 
+				startOnLoad: true
 			});
 		</script>
 	</body>
