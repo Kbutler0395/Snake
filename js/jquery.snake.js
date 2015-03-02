@@ -1,3 +1,12 @@
+ /*
+ * This file is part of the Snake JQuery plugin.
+ *
+ * (c) Rémi Houdelette <https://github.com/B0ulzy>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+ 
  (function($) {
     $.fn.snake = function(options) {
         $.fn.snake.settings = $.extend({}, $.fn.snake.defaults, options);
