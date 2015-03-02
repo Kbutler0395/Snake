@@ -1,0 +1,24 @@
+{
+  "name": "b0ulzy-snake",
+  "version": "1.0.0",
+  "description": "Snake JQuery plugin using HTML5 canvas. ",
+  "main": "js/jquery.snake.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/B0ulzy/Snake.git"
+  },
+  "keywords": [
+    "Snake",
+    "HTML5",
+    "canvas",
+    "JQuery",
+    "plugin",
+    "JavaScript",
+    "JS"
+  ],
+  "author": "Rémi Houdelette",
+  "license": "MIT"
+}
