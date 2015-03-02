@@ -37,7 +37,7 @@ To init the snake, use the following script:
 $('#container').snake({startOnLoad:true});
 ```
 
-## Customize the plugin
+## Advanced usage
 
 Now that you have a functionnal snake on your website, you may want custom it a bit. 
-In order to achieve that, please see the following documentation: [Overriding default settings](overriding_settings.md).
+In order to achieve that, please see the following documentation: [Overriding default settings](advanced_usage.md).
