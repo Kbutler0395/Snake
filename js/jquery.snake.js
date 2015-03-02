@@ -60,11 +60,21 @@
     $.fn.snake.createFood = function()
     {
         var settings = $.fn.snake.settings;
+        var snake = $.fn.snake.snakeArray;
+
+        var x = Math.round(Math.random() * (settings.canvasWidth - settings.cellWidth)/settings.cellWidth);
+        var y = Math.round(Math.random() * (settings.canvasHeight - settings.cellWidth)/settings.cellWidth);
+
+        for(var i = 0; i < snake.length; i++) {
+            if (snake[i].x == x && snake[i].y == y) {
+                return $.fn.snake.createFood();
+            }
+        }
 
         $.fn.snake.food = {
-            x: Math.round(Math.random() * (settings.canvasWidth - settings.cellWidth)/settings.cellWidth), 
-            y: Math.round(Math.random() * (settings.canvasHeight - settings.cellWidth)/settings.cellWidth), 
-        };        
+            x: x, 
+            y: y
+        };
     };
 
     $.fn.snake.init = function() 
