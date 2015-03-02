@@ -35,7 +35,7 @@ To init the snake, use the following script:
 
 ``` javascript 
 $('#container').snake({startOnLoad:true});
-``
+```
 
 ## Customize the plugin
 

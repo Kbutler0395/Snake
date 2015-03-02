@@ -26,9 +26,7 @@ All the installation instructions are located in the documentation.
 License
 -------
 
-This plugin is under the MIT license. See the complete license in the bundle:
-
-    [Resources/meta/LICENSE](https://github.com/B0ulzy/Snake/blob/master/Resources/meta/LICENSE)
+This plugin is under the MIT license. See the complete license in the bundle: [Resources/meta/LICENSE](https://github.com/B0ulzy/Snake/blob/master/Resources/meta/LICENSE)
 
 Reporting an issue or a feature request
 ---------------------------------------
