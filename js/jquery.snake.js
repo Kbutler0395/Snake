@@ -1,19 +1,18 @@
-
-
-(function($) {
+ (function($) {
     $.fn.snake = function(options) {
         $.fn.snake.settings = $.extend({}, $.fn.snake.defaults, options);
 
         // Create the canvas
         var canvas = $('<canvas></canvas>', {
-            'id': $.fn.snake.settings.id, 
-            'class': $.fn.snake.settings.classes, 
-            'style': 'width: ' + $.fn.snake.settings.canvasWidth + 'px; height: ' + $.fn.snake.settings.canvasHeight + 'px; background: ' + $.fn.snake.settings.canvasBackground + '; ' + $.fn.snake.settings.canvasStyle
+            id: $.fn.snake.settings.id, 
+            class: $.fn.snake.settings.classes, 
+            style: 'width: ' + $.fn.snake.settings.canvasWidth + 'px; height: ' + $.fn.snake.settings.canvasHeight + 'px; background: ' + $.fn.snake.settings.canvasBackground + '; ' + $.fn.snake.settings.canvasStyle, 
         });
+        canvas.attr('width', $.fn.snake.settings.canvasWidth + 'px');
+        canvas.attr('height', $.fn.snake.settings.canvasHeight + 'px');
         canvas.appendTo(this);
 
         $.fn.snake.ctx = canvas[0].getContext('2d');
-        $.fn.snake.direction = $.fn.snake.settings.defaultDirection;
         $.fn.snake.init();
 
         return this;
@@ -36,7 +35,7 @@
         snakeLength: 5, 
         startOnLoad: false, 
         defaultDirection: "right", 
-        cellWidth: "10px", 
+        cellWidth: 10, 
         wallColision: true, 
         timer: 60, 
         callback: function() 
@@ -53,10 +52,10 @@
         for (var i = settings.snakeLength; i > 0; i--) {
             $.fn.snake.snakeArray.push({
                 x: i, 
-                y: settings.cellWidth
+                y: 0
             });
         }
-    }
+    };
 
     $.fn.snake.createFood = function()
     {
@@ -73,6 +72,7 @@
         var settings = $.fn.snake.settings; 
 
         $.fn.snake.running = false;
+        $.fn.snake.direction = settings.defaultDirection;
 
         // Create the snake
         $.fn.snake.createSnake();
@@ -106,7 +106,7 @@
         clearInterval($.fn.snake.game);
 
         $.fn.snake.running = false;
-    }
+    };
 
     $.fn.snake.resume = function()
     {
@@ -116,7 +116,7 @@
         }, $.fn.snake.settings.timer);
 
         $.fn.snake.running = true;
-    }
+    };
 
     $.fn.snake.process = function() 
     {
@@ -148,7 +148,6 @@
 
         if ($.fn.snake.hasBiteHimself(nx, ny) || $.fn.snake.inCollision(nx, ny))
         {
-            console.log('End');
             settings.callback();
 
             return;
@@ -184,7 +183,6 @@
 
         for(var i = 0; i < snake.length; i++) {
             if (snake[i].x == x && snake[i].y == y) {
-                console.log('HasBiteHimself');
                 return true;
             }
         }
@@ -217,8 +215,6 @@
             ctx.fillRect(snake[i].x * settings.cellWidth, snake[i].y * settings.cellWidth, settings.cellWidth, settings.cellWidth);
             ctx.strokeRect(snake[i].x * settings.cellWidth, snake[i].y * settings.cellWidth, settings.cellWidth, settings.cellWidth);
         }
-
-        console.log('displaySnake');
     };
 
     $.fn.snake.displayFood = function()
@@ -256,7 +252,7 @@
         else if (key == "39" && $.fn.snake.direction != "left") {
             $.fn.snake.direction = "right";
         }
-        else if(key == "40" && $.fn.snake.direction != "up") {
+        else if (key == "40" && $.fn.snake.direction != "up") {
             $.fn.snake.direction = "down";
         }
     });
