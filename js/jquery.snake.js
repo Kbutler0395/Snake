@@ -57,6 +57,7 @@
         callback: function() 
         {
             $.fn.snake.init();
+            $.fn.snake.start();
         }
     };
 
@@ -108,6 +109,7 @@
 
         $.fn.snake.running = false;
         $.fn.snake.direction = settings.defaultDirection;
+        $.fn.snake.score = 0;
 
         // Create the snake
         $.fn.snake.createSnake();
@@ -125,8 +127,6 @@
      */
     $.fn.snake.start = function()
     {
-        $.fn.snake.score = 0;
-
         if (typeof $.fn.snake.game != "undefined") {
             clearInterval($.fn.snake.game);
         }
