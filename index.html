@@ -5,8 +5,8 @@
         <style type="text/css">
             #container 
             {
-                width: 350px;
-                height: 500px; 
+                width: 250px;
+                height: 250px; 
                 border: solid 1px #000000;
             }
         </style>
@@ -19,12 +19,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.snake.js" type="text/javascript"></script>
         <script type="text/javascript">
-            var snake = $('#container').snake({
-                canvasWidth: 350, 
-                canvasHeight: 500,
-                startOnLoad: true, 
-                timer: 100
-            });
+            var snake = $('#container').snake();
+            $.fn.snake.start();
         </script>
     </body>
 </html>
