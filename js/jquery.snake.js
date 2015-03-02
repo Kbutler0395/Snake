@@ -8,6 +8,13 @@
  */
  
  (function($) {
+    /**
+     * Init the canvas and settings
+     * 
+     * @param   object  options
+     * 
+     * @return  object
+     */
     $.fn.snake = function(options) {
         $.fn.snake.settings = $.extend({}, $.fn.snake.defaults, options);
 
@@ -53,6 +60,9 @@
         }
     };
 
+    /**
+     * Create the array of the snake
+     */
     $.fn.snake.createSnake = function()
     {
         var settings = $.fn.snake.settings;
@@ -66,6 +76,9 @@
         }
     };
 
+    /**
+     * Create a "food" at random coordinates
+     */
     $.fn.snake.createFood = function()
     {
         var settings = $.fn.snake.settings;
@@ -86,6 +99,9 @@
         };
     };
 
+    /**
+     * Init the game
+     */
     $.fn.snake.init = function() 
     {
         var settings = $.fn.snake.settings; 
@@ -104,6 +120,9 @@
         }
     };
 
+    /**
+     * Start the game
+     */
     $.fn.snake.start = function()
     {
         $.fn.snake.score = 0;
@@ -120,6 +139,9 @@
         $.fn.snake.running = true;
     };
 
+    /**
+     * Pause the game
+     */
     $.fn.snake.pause = function()
     {
         clearInterval($.fn.snake.game);
@@ -127,6 +149,9 @@
         $.fn.snake.running = false;
     };
 
+    /**
+     * Resume the game
+     */
     $.fn.snake.resume = function()
     {
         $.fn.snake.game = setInterval(function()
@@ -137,6 +162,14 @@
         $.fn.snake.running = true;
     };
 
+    /**
+     * Move the snake and check events, such as:
+     * - eat food
+     * - wall collision
+     * - eat his own tail
+     * 
+     * Display elements on canvas
+     */
     $.fn.snake.process = function() 
     {
         var ctx = $.fn.snake.ctx; 
@@ -149,9 +182,11 @@
         ctx.fillStyle = settings.canvasBackground;
         ctx.fillRect(0, 0, settings.canvasWidth, settings.canvasHeight);
 
+        // Get snake's head position
         var nx = snake[0].x;
         var ny = snake[0].y;
 
+        // Determine new snake's head position
         if (direction == "up") {
             ny--;
         }
@@ -165,6 +200,7 @@
             nx++;
         }
 
+        // Check the end of the game
         if ($.fn.snake.hasBiteHimself(nx, ny) || $.fn.snake.inCollision(nx, ny))
         {
             settings.callback();
@@ -172,8 +208,11 @@
             return;
         }
 
+        // Check if the snake ate the food
         if (nx == food.x && ny == food.y)
         {
+            // If it ate the food, we create a new tail element, 
+            // we increase the score and we create a new food
             var tail = {
                 x: nx, 
                 y: ny
@@ -184,6 +223,7 @@
         }
         else
         {
+            // Else, the new head of the snake will be its tail
             var tail = $.fn.snake.snakeArray.pop(); //pops out the last cell
             tail.x = nx; 
             tail.y = ny; 
@@ -191,11 +231,21 @@
 
         $.fn.snake.snakeArray.unshift(tail);
 
+        // Display data on canvas
         $.fn.snake.displaySnake();
         $.fn.snake.displayFood(); 
         $.fn.snake.displayScore();
     };
 
+    /**
+     * Checks if the new snake coordinates are 
+     * in conflict with its current position
+     * 
+     * @param   integer     x
+     * @param   integer     y
+     * 
+     * @return  boolean
+     */
     $.fn.snake.hasBiteHimself = function(x, y) 
     {
         var snake = $.fn.snake.snakeArray;
@@ -209,6 +259,14 @@
         return false;
     };
 
+    /**
+     * Check if the snake go into a wall
+     * 
+     * @param   integer     x
+     * @param   integer     y
+     * 
+     * @return  boolean
+     */
     $.fn.snake.inCollision = function(x, y)
     {
         var settings = $.fn.snake.settings; 
@@ -221,6 +279,9 @@
         return (x < 0 || x >= settings.canvasWidth / settings.cellWidth || y < 0 || y == settings.canvasHeight / settings.cellWidth);
     };
 
+    /**
+     * Draw the snake
+     */
     $.fn.snake.displaySnake = function() 
     {
         var ctx = $.fn.snake.ctx; 
@@ -236,6 +297,9 @@
         }
     };
 
+    /**
+     * Draw the food
+     */
     $.fn.snake.displayFood = function()
     {
         var ctx = $.fn.snake.ctx;
@@ -248,12 +312,18 @@
         ctx.strokeRect(food.x * settings.cellWidth, food.y * settings.cellWidth, settings.cellWidth, settings.cellWidth);
     };
 
+    /**
+     * Display the score
+     */
     $.fn.snake.displayScore = function()
     {
         var scoreText = "Score: " + $.fn.snake.score;
         $.fn.snake.ctx.fillText(scoreText, 5, $.fn.snake.settings.canvasHeight - 5);
     };
 
+    /**
+     * Set the snake keyboard controllable
+     */
     $(document).keydown(function(e)
     {
         if ($.fn.snake.running !== true) {
