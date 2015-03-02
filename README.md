@@ -16,7 +16,7 @@ Documentation
 
 The documentation is stored in the `Resources/doc/index.md` file in this package:
 
-[Read the Documentation for master](https://github.com/B0ulzy/Snake/blob/master/Resources/doc/index.md)
+[Read the Documentation for master](https://github.com/B0ulzy/Snake/blob/dev/Resources/doc/index.md)
 
 Installation
 ------------
@@ -26,7 +26,7 @@ All the installation instructions are located in the documentation.
 License
 -------
 
-This plugin is under the MIT license. See the complete license in the bundle: [Resources/meta/LICENSE](https://github.com/B0ulzy/Snake/blob/master/Resources/meta/LICENSE)
+This plugin is under the MIT license. See the complete license in the bundle: [Resources/meta/LICENSE](https://github.com/B0ulzy/Snake/blob/dev/Resources/meta/LICENSE)
 
 Reporting an issue or a feature request
 ---------------------------------------
