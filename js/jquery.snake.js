@@ -44,7 +44,7 @@
         canvasHeight: 250, 
         canvasStyle: "", 
         canvasWidth: 250, 
-        foodColor: "#ff00000", 
+        foodColor: "#ff0000", 
         foodBorder: "#ffffff",  
         snakeColor: "#000000", 
         snakeBorder: "#ffffff", 
@@ -276,7 +276,7 @@
             return false;
         }
 
-        return (x < 0 || x >= settings.canvasWidth / settings.cellWidth || y < 0 || y == settings.canvasHeight / settings.cellWidth);
+        return (x < 0 || x >= settings.canvasWidth / settings.cellWidth || y < 0 || y >= settings.canvasHeight / settings.cellWidth);
     };
 
     /**
